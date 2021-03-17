@@ -8,7 +8,7 @@ interface IProps {
 
 export const PaginateItem: React.FC<IProps> = ({product}) => {
   return (
-    <div className="products">
+    <div className="product">
       <Link to={`/products/${product.id}`}>{product.name}</Link>
       <div>{product.price}</div>
     </div>
