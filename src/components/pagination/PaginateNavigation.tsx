@@ -1,4 +1,5 @@
 import React from 'react'
+import { range } from '../../utils/array'
 
 interface IProps {
   pageCount: number,
@@ -24,7 +25,7 @@ export const PaginateNavigation: React.FC<IProps> = ({pageCount, currentPage, pa
 
   return (
     <div className={`paginate-navigation ${paginationClassName}`}>
-      {Array(pageCount).map(i => makePageItem(i))}
+      {range(pageCount).map(i => makePageItem(i))}
     </div>
   )
 }
