@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Server } from '../api/server';
-import { PaginateItem } from '../components/common/PaginateItem';
+import { PaginateItem } from '../components/pagination/PaginateItem';
 import { ICategory } from '../models';
 import { Link } from 'react-router-dom';
 import { Paginate } from '../components/category/Paginate';
