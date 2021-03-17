@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Server } from '../api/server'
-import { Paginate } from '../components/common/Paginate'
-import { PaginateItem } from '../components/product/PaginateItem';
+import { Paginate } from '../components/product/Paginate';
 import { IProduct } from '../models';
 
 export const Products: React.FC = () => {
@@ -15,13 +14,5 @@ export const Products: React.FC = () => {
     Server.getProductsByPage(0, 10)
           .then(res => setProducts(res))
 
-  return (
-    <div className="body product-page">
-      <Paginate {...info}>
-        {
-          products.map(p => <PaginateItem product={p}/>)
-        }
-      </Paginate>
-    </div>
-  )
+  return <Paginate info={info} products={products}/>
 }

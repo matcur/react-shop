@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Server } from '../api/server';
-import { PaginateItem } from '../components/category/PaginateItem';
-import { Paginate } from '../components/common/Paginate'
+import { PaginateItem } from '../components/common/PaginateItem';
 import { ICategory } from '../models';
+import { Link } from 'react-router-dom';
+import { Paginate } from '../components/category/Paginate';
 
 export const Categories: React.FC = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -19,13 +20,5 @@ export const Categories: React.FC = () => {
             setCategories(res)
           })
 
-  return (
-    <div className="body category-page">
-      <Paginate {...info}>
-        {
-          categories.map(c => <PaginateItem category={c}/>)
-        }
-      </Paginate>
-    </div>
-  )
+  return <Paginate info={info} categories={categories}/>
 }

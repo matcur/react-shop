@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { useParams } from "react-router"
 import { Server } from './../api/server';
 import { IProduct } from './../models';
-import { Paginate } from '../components/common/Paginate';
-import { PaginateItem } from '../components/product/PaginateItem';
+import { Paginate } from '../components/product/Paginate';
 
 interface IProps {
 }
@@ -23,11 +22,6 @@ export const CategoryPosts: React.FC<IProps> = () => {
             setIsLoaded(true)
             setProducts(res)
           })
-
-
-  return (
-    <Paginate {...info}>
-      {products.map(p => <PaginateItem product={p}/>)}
-    </Paginate>
-  )
+  
+  return <Paginate info={info} products={products}/>
 }
