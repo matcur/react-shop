@@ -39,7 +39,9 @@ export class Server {
     await setTimeout(() => {}, 100)
 
     return new Promise<IProduct[]>(resolve => {
-      resolve(products.slice(perPage * page, perPage))
+      const offset = perPage * page
+      
+      resolve(products.slice(offset, offset + perPage))
     })
   }
 

@@ -4,6 +4,7 @@ import { PaginateNavigation } from './PaginateNavigation'
 interface IProps {
   info: PaginateInfo
   className?: string
+  onPageSelected?: (page: number) => void
 }
 
 export type PaginateInfo = {
@@ -11,11 +12,14 @@ export type PaginateInfo = {
   lastPage: number
 }
 
-export const BasePaginate: React.FC<IProps> = ({info, children, className = ''}) => {
+export const BasePaginate: React.FC<IProps> = ({info, children, className = '', onPageSelected = () => {}}) => {
   return (
     <div className={`paginate ${className}`}>
       {children}
-      <PaginateNavigation currentPage={info.currentPage} pageCount={info.lastPage}/>
+      <PaginateNavigation
+        currentPage={info.currentPage}
+        pageCount={info.lastPage}
+        onPageSelected={onPageSelected}/>
     </div>
   )
 }

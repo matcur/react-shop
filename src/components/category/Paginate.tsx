@@ -8,9 +8,10 @@ import { PaginateItem } from '../pagination/PaginateItem'
 interface IProps {
   info: PaginateInfo
   categories: ICategory[]
+  onPageSelected?: (page: number) => void
 }
 
-export const Paginate: React.FC<IProps> = ({info, categories}) => {
+export const Paginate: React.FC<IProps> = ({info, categories, onPageSelected = () => {}}) => {
   const makePaginateItem = (category: ICategory) => {
     return (
       <PaginateItem>
@@ -22,7 +23,9 @@ export const Paginate: React.FC<IProps> = ({info, categories}) => {
 
   return (
     <div className="body category-page">
-      <BasePaginate info={info}>
+      <BasePaginate
+        info={info}
+        onPageSelected={onPageSelected}>
         {
           categories.map(c => makePaginateItem(c))
         }

@@ -30,6 +30,10 @@ code {
   height: 60px;
 }
 
+.paginate-navigation {
+  display: flex;
+}
+
 .navigate-menu {
   display: flex;
   padding: 10px;

@@ -2,23 +2,25 @@ import React, { useState } from 'react'
 import { Server } from '../api/server';
 import { PaginateItem } from '../components/pagination/PaginateItem';
 import { ICategory } from '../models';
-import { Link } from 'react-router-dom';
 import { Paginate } from '../components/category/Paginate';
+import { usePageSelected } from '../hooks/usePageSelected';
 
 export const Categories: React.FC = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
+  const [currentPage, setCurrentPage] = useState(1)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [lastPage, setLastPage] = useState(5)
+  const onPageSelected = usePageSelected(setCurrentPage, setIsLoaded)
 
-  const info = {
-    currentPage: 0,
-    lastPage: 3,
-  } 
   if (!isLoaded)
-    Server.getProductsByPage(0, 10)
+    Server.getProductsByPage(currentPage, 10)
           .then(res => {
             setIsLoaded(true)
             setCategories(res)
           })
 
-  return <Paginate info={info} categories={categories}/>
+  return <Paginate 
+            info={{currentPage, lastPage}} 
+            categories={categories}
+            onPageSelected={onPageSelected}/>
 }
