@@ -7,7 +7,7 @@ interface IProps {
   pageItemClassName?: string,
 }
 
-export const PaginateNavigation: React.FC<IProps> = ({pageCount, currentPage, paginationClassName, pageItemClassName}) => {
+export const PaginateNavigation: React.FC<IProps> = ({pageCount, currentPage, paginationClassName = '', pageItemClassName = ''}) => {
   const isCurrentPage = (page: number) => page === currentPage
 
   const makePageItem = (page: number) => {
