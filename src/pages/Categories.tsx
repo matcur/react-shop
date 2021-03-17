@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { Server } from '../api/server';
-import { IInfo, Paginate } from '../components/category/Paginate'
+import { PaginateItem } from '../components/category/PaginateItem';
+import { Paginate } from '../components/common/Paginate'
 import { ICategory } from '../models';
 
 export const Categories: React.FC = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [isLoaded, setIsLoaded] = useState(false)
 
-  const info: IInfo = {
-    categories,
+  const info = {
     currentPage: 0,
     lastPage: 3,
   } 
@@ -20,6 +20,12 @@ export const Categories: React.FC = () => {
           })
 
   return (
-    <Paginate info={info}/>
+    <div className="body category-page">
+      <Paginate {...info}>
+        {
+          categories.map(c => <PaginateItem category={c}/>)
+        }
+      </Paginate>
+    </div>
   )
 }

@@ -26,7 +26,7 @@ export const Details: React.FC<IProps> = () => {
   }
 
   return (
-    <div className="products">
+    <div className="product-details">
       <h1>{category?.name}</h1>
       <div>{category?.description}</div>
     </div>

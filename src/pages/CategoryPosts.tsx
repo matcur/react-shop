@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useParams } from "react-router"
 import { Server } from './../api/server';
 import { IProduct } from './../models';
-import { IInfo, Paginate } from '../components/product/Paginate';
+import { Paginate } from '../components/common/Paginate';
+import { PaginateItem } from '../components/product/PaginateItem';
 
 interface IProps {
 }
@@ -12,8 +13,7 @@ export const CategoryPosts: React.FC<IProps> = () => {
   const [products, setProducts] = useState<IProduct[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
 
-  const info: IInfo = {
-    products,
+  const info = {
     currentPage: 0,
     lastPage: 3,
   }
@@ -26,6 +26,8 @@ export const CategoryPosts: React.FC<IProps> = () => {
 
 
   return (
-    <Paginate info={info}/>
+    <Paginate {...info}>
+      {products.map(p => <PaginateItem product={p}/>)}
+    </Paginate>
   )
 }
