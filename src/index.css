@@ -21,3 +21,20 @@ code {
   display: flex;
   justify-content: space-between;
 }
+
+.header {
+  display: flex;
+}
+
+.logo {
+  height: 60px;
+}
+
+.navigate-menu {
+  display: flex;
+  padding: 10px;
+}
+
+.navigate-menu__link {
+  padding: 0 8px;
+}
