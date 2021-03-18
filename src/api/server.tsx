@@ -1,4 +1,4 @@
-import { ICategory, IProduct } from "../models";
+import { ICategory, IProduct, IUser } from "../models";
 
 const products: IProduct[] = [
   {id: 1, name: 'apple', description: 'very well apple', price: 100, categoryId: 1},
@@ -33,6 +33,15 @@ const categories: ICategory[] = [
   {id: 2, name: 'Fruits', description: 'Fruits description'},
   {id: 3, name: 'Sun', description: 'Sun description'},
 ]
+
+const users: IUser[] = [
+  {id: 1, name: 'Steve', password: '1234'},
+  {id: 2, name: 'Jon', password: '1234'},
+  {id: 3, name: 'Rustam', password: '1234'},
+  {id: 4, name: 'Vadim', password: '1234'},
+]
+
+let currentUser: IUser | undefined = undefined
 
 export class Server {
   static async getProductsByPage(page: number, perPage: number) {
@@ -85,5 +94,25 @@ export class Server {
       else
         resolve(category)
     })
+  }
+
+  static isValidAuthData(name: string, password: string) {
+    return users.find(u => u.name == name && u.password == password) != undefined
+  }
+
+  static isNameFree(name: string) {
+    return users.find(u => u.name == name) == undefined
+  }
+
+  static isUserAuth() {
+    return currentUser != null
+  }
+
+  static logIn(name: string) {
+    currentUser = users.find(u => u.name == name)
+  }
+
+  static registerUser(name: string, password: string) {
+    users.push({id: users.length + 1,name, password})
   }
 }

@@ -11,3 +11,9 @@ export interface ICategory {
   name: string
   description: string
 }
+
+export interface IUser {
+  id: number
+  name: string
+  password: string
+}

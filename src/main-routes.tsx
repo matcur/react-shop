@@ -6,6 +6,8 @@ import { Categories } from "./pages/Categories";
 import { Home } from "./pages/Home";
 import { Products } from "./pages/Products";
 import { CategoryPosts } from "./pages/CategoryPosts";
+import { LogIn } from "./pages/auth/LogIn";
+import { Registration } from "./pages/auth/Registration";
 
 export const routes = [
   <Route path="/" component={Home} exact />,
@@ -14,4 +16,6 @@ export const routes = [
   <Route path="/categories" component={Categories} exact />,
   <Route path="/categories/:id" component={CategoryDetails} exact />,
   <Route path="/categories/:id/posts" component={CategoryPosts} exact />,
+  <Route path="/log-in" component={LogIn} exact/>,
+  <Route path="/registration" component={Registration} exact/>,
 ]
