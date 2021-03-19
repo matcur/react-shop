@@ -17,3 +17,12 @@ export interface IUser {
   name: string
   password: string
 }
+
+export interface ICartProductSet {
+  product: IProduct
+  count: number
+}
+
+export interface ICart {
+  products: ICartProductSet[]
+}

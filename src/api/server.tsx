@@ -1,4 +1,4 @@
-import { ICategory, IProduct, IUser } from "../models";
+import { ICart, ICategory, IProduct, IUser } from "../models";
 
 const products: IProduct[] = [
   {id: 1, name: 'apple', description: 'very well apple', price: 100, categoryId: 1},
@@ -42,6 +42,58 @@ const users: IUser[] = [
 ]
 
 let currentUser: IUser | undefined = undefined
+const currentCart: ICart = {
+  products: [
+    {
+      product: {...products[0]},
+      count: 1,
+    },
+    {
+      product: {...products[1]},
+      count: 2,
+    },
+    {
+      product: {...products[2]},
+      count: 6,
+    },
+    {
+      product: {...products[0]},
+      count: 1,
+    },
+    {
+      product: {...products[1]},
+      count: 2,
+    },
+    {
+      product: {...products[2]},
+      count: 6,
+    },
+    {
+      product: {...products[0]},
+      count: 1,
+    },
+    {
+      product: {...products[1]},
+      count: 2,
+    },
+    {
+      product: {...products[2]},
+      count: 6,
+    },
+    {
+      product: {...products[0]},
+      count: 1,
+    },
+    {
+      product: {...products[1]},
+      count: 2,
+    },
+    {
+      product: {...products[2]},
+      count: 6,
+    },
+  ]
+}
 
 export class Server {
   static async getProductsByPage(page: number, perPage: number) {
@@ -114,5 +166,9 @@ export class Server {
 
   static registerUser(name: string, password: string) {
     users.push({id: users.length + 1,name, password})
+  }
+
+  static getCartProducts() {
+    return currentCart.products
   }
 }
