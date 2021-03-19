@@ -24,5 +24,5 @@ export interface ICartProductSet {
 }
 
 export interface ICart {
-  products: ICartProductSet[]
+  productSets: ICartProductSet[]
 }

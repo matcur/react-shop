@@ -1,22 +1,36 @@
 import React, { useState } from 'react'
-import { useStore } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { ICartProductSet } from '../../models'
+import { decreaseProductCount, increaseProductCount, removeProduct as removeProductFromCart } from '../../redux/slices/cartSlice'
 
 interface IProps {
   set: ICartProductSet
 }
 
 export const ProductSet: React.FC<IProps> = ({set}) => {
-  // Todo переделать при добавлении redux
-  const [count, setCount] = useState(set.count)
+  const dispatch = useDispatch()
   
   const product = set.product
-  const canDecrease = count > 0
+  const canDecrease = set.count > 0
 
-  const increaseCount = () => setCount(count => count + 1)
+  const increaseCount = () => {
+    const payload = {
+      product,
+      amount: 1
+    }
+    dispatch(increaseProductCount(payload))
+  }
   const decreaseCount = () => {
-    if (canDecrease)
-      setCount(count => count - 1)
+    if (canDecrease) {
+      const payload = {
+        product,
+        amount: 1
+      }
+      dispatch(decreaseProductCount(payload))
+    }
+  }
+  const removeProduct = () => {
+    dispatch(removeProductFromCart(product))
   }
 
   return (
@@ -26,8 +40,8 @@ export const ProductSet: React.FC<IProps> = ({set}) => {
       </div>
       <div className="product-set__content">
         <span className="product-name">Price for one {product.price}</span>
-        <span className="product-name">Count {count}</span>
-        <span className="product-name">Total price {product.price * count}</span>
+        <span className="product-name">Count {set.count}</span>
+        <span className="product-name">Total price {product.price * set.count}</span>
       </div>
       <div className="product-set__actions">
         <button 
@@ -37,10 +51,11 @@ export const ProductSet: React.FC<IProps> = ({set}) => {
         <button 
           className="product-set__action decrease-product-count"
           onClick={decreaseCount}
+          disabled={!canDecrease}
           >Decrease count </button>
         <button 
           className="product-set__action remove-product"
-          onClick={() => {}}
+          onClick={removeProduct}
           >Remove product</button>
       </div>
     </div>

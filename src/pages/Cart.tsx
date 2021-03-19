@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
-import { Server } from '../api/server'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { ProductSet } from '../components/cart/ProductSet'
+import { useQuery } from '../hooks/useQuery'
 import { ICartProductSet } from '../models'
+import { RootReducer } from '../redux/store'
 
 export const Cart: React.FC = () => {
-  const [perPage, setPerPage] = useState(5)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [lastPage, setLastPage] = useState(5)
-  const [productSets, setProductSets] = useState<ICartProductSet[]>([])
+  const queryPerPage = useQuery().get('perPage')?? '0'
+  const perPage = Math.max(parseInt(queryPerPage), 5)
+  const queryCurrentPage = useQuery().get('page')?? '0'
+  const currentPage = Math.max(parseInt(queryCurrentPage), 0)
 
-  if (!isLoaded) {
-    const offset = currentPage * 5;
-    setProductSets(Server.getCartProducts().slice(offset, offset + perPage))
-    setIsLoaded(true)
-  }
+  const offset = Math.max(currentPage - 1, 0) * perPage
+  const productSets = useSelector<RootReducer, ICartProductSet[]>(
+    state => state.cart.productSets.slice(offset, offset + perPage)
+  )
 
   return (
     <div className="cart">

@@ -43,53 +43,53 @@ const users: IUser[] = [
 
 let currentUser: IUser | undefined = undefined
 const currentCart: ICart = {
-  products: [
+  productSets: [
     {
-      product: {...products[0]},
+      product: products[0],
       count: 1,
     },
     {
-      product: {...products[1]},
+      product: products[1],
       count: 2,
     },
     {
-      product: {...products[2]},
+      product: products[2],
       count: 6,
     },
     {
-      product: {...products[0]},
+      product: products[3],
       count: 1,
     },
     {
-      product: {...products[1]},
+      product: products[4],
       count: 2,
     },
     {
-      product: {...products[2]},
+      product: products[5],
       count: 6,
     },
     {
-      product: {...products[0]},
+      product: products[6],
       count: 1,
     },
     {
-      product: {...products[1]},
+      product: products[7],
       count: 2,
     },
     {
-      product: {...products[2]},
+      product: products[8],
       count: 6,
     },
     {
-      product: {...products[0]},
+      product: products[9],
       count: 1,
     },
     {
-      product: {...products[1]},
+      product: products[10],
       count: 2,
     },
     {
-      product: {...products[2]},
+      product: products[11],
       count: 6,
     },
   ]
@@ -169,6 +169,10 @@ export class Server {
   }
 
   static getCartProducts() {
-    return currentCart.products
+    return currentCart.productSets
+  }
+
+  static getCurrentUserCart() {
+    return currentCart
   }
 }
