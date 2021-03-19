@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(63, 63, 63);
 }
 
 code {
@@ -25,6 +24,7 @@ code {
 
 .header {
   display: flex;
+  justify-content: space-between;
 }
 
 .logo {
@@ -38,6 +38,14 @@ code {
 .navigate-menu {
   display: flex;
   padding: 10px;
+}
+
+.auth-navbar {
+  padding: 20px;
+}
+
+.auth-navbar__item {
+  margin-right: 10px;
 }
 
 .navigate-menu__link {

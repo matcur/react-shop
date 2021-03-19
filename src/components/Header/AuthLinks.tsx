@@ -12,8 +12,8 @@ export const AuthLinks : React.FC = () => {
           ? <Link to='/sign-out'>Sign Out</Link>
           : (
             <>
-              <Link to='/log-in'>Log in</Link>
-              <Link to='/registration'>Registration</Link>
+              <Link to='/log-in' className='auth-navbar__item'>Log in</Link>
+              <Link to='/registration' className='auth-navbar__item'>Registration</Link>
             </>
           )
       }
