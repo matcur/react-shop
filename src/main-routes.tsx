@@ -9,6 +9,7 @@ import { CategoryPosts } from "./pages/CategoryPosts";
 import { LogIn } from "./pages/auth/LogIn";
 import { Registration } from "./pages/auth/Registration";
 import { Cart } from "./pages/Cart";
+import { SignOut } from "./pages/auth/SignOut";
 
 export const routes = [
   <Route path="/" component={Home} exact />,
@@ -17,7 +18,8 @@ export const routes = [
   <Route path="/categories" component={Categories} exact />,
   <Route path="/categories/:id" component={CategoryDetails} exact />,
   <Route path="/categories/:id/posts" component={CategoryPosts} exact />,
+  <Route path="/cart" component={Cart} exact/>,
+  <Route path="/sign-out" component={SignOut} exact/>,
   <Route path="/log-in" component={LogIn} exact/>,
   <Route path="/registration" component={Registration} exact/>,
-  <Route path="/cart" component={Cart} exact/>,
 ]

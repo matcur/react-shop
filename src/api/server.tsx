@@ -175,4 +175,8 @@ export class Server {
   static getCurrentUserCart() {
     return currentCart
   }
+  
+  static getUserByName(name: string) {
+    return users.find(u => u.name == name)
+  }
 }

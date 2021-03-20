@@ -1,21 +1,33 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Server } from '../../api/server'
 import { Field } from '../../components/form/Field'
+import { useLogIn } from '../../hooks/useLogIn'
+import { IUser } from '../../models'
+import { selectIsUserAuth } from '../../redux/slices/authSlice'
+import { RootReducer } from '../../redux/store'
 
 export const LogIn: React.FC = () => {
   const history = useHistory()
-  if (Server.isUserAuth())
+  const isUserAuth = useSelector<RootReducer>(selectIsUserAuth)
+  if (isUserAuth)
     history.push('/')
 
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  const logIn = useLogIn()
 
-  const tryIn = () => {
+  const tryLogIn = () => {
     if (Server.isValidAuthData(name, password)) {
-      Server.logIn(name)
-      history.push('/')
+      logIn(
+        Server.getUserByName(name) as IUser,
+        {
+          tokenExpireDate: 'not today',
+          token: '1234567',
+        }
+      )
     }
     else {
       setErrorMessage('Wrong auth data')
@@ -33,7 +45,7 @@ export const LogIn: React.FC = () => {
         setValue={setPassword}
         labelText='Password'/>
       <span className="alert">{errorMessage}</span>
-      <button onClick={() => tryIn()}>In</button>
+      <button onClick={() => tryLogIn()}>In</button>
     </div>
   )
 }
