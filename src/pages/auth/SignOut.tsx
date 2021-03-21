@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSignOut } from '../../hooks/useSignOut'
+import { useSignOut } from '../../hooks/auth/useSignOut'
 
 interface IProps {
 

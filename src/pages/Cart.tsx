@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { ProductSet } from '../components/cart/ProductSet'
 import { useQuery } from '../hooks/useQuery'
-import { useRequireAuth } from '../hooks/useRequireAuth'
+import { useRequireAuth } from '../hooks/auth/useRequireAuth'
 import { ICartProductSet } from '../models'
 import { RootReducer } from '../redux/store'
 

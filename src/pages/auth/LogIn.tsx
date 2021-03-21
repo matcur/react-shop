@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Server } from '../../api/server'
 import { Field } from '../../components/form/Field'
-import { useLogIn } from '../../hooks/useLogIn'
-import { useRequireGuest } from '../../hooks/useRequireGuest'
+import { useLogIn } from '../../hooks/auth/useLogIn'
+import { useRequireGuest } from '../../hooks/auth/useRequireGuest'
 import { IUser } from '../../models'
 
 export const LogIn: React.FC = () => {
