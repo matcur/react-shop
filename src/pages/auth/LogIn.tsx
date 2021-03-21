@@ -4,15 +4,11 @@ import { useHistory } from 'react-router-dom'
 import { Server } from '../../api/server'
 import { Field } from '../../components/form/Field'
 import { useLogIn } from '../../hooks/useLogIn'
+import { useRequireGuest } from '../../hooks/useRequireGuest'
 import { IUser } from '../../models'
-import { selectIsUserAuth } from '../../redux/slices/authSlice'
-import { RootReducer } from '../../redux/store'
 
 export const LogIn: React.FC = () => {
-  const history = useHistory()
-  const isUserAuth = useSelector<RootReducer>(selectIsUserAuth)
-  if (isUserAuth)
-    history.push('/')
+  useRequireGuest()()
 
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
