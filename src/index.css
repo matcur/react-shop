@@ -57,3 +57,11 @@ code {
   display: flex;
   flex-direction: column;
 }
+
+.product-counter {
+  display: flex;
+}
+
+.counter-input {
+  width: 20px;
+}

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Server } from '../../api/server'
 import { ICartProductSet, IProduct } from '../../models'
+import { RootReducer } from '../store'
 
 interface IState {
   productSets: ICartProductSet[]
@@ -48,5 +49,12 @@ const slice = createSlice({
 })
 
 export const { addProduct, removeProduct, increaseProductCount, decreaseProductCount } = slice.actions
+
+export const selectSetByProductId = (state: RootReducer, id: number | string | undefined) => {
+  if (id == undefined)
+    return undefined
+
+  return state.cart.productSets.find(s => s.product.id == id)
+}
 
 export const cartReducer = slice.reducer
