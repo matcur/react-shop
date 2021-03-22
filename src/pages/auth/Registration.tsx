@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import { Server } from '../../api/server'
-import { Field } from '../../components/form/Field'
+import { Field } from '../../components/common/form/Field'
 
 export const Registration : React.FC = () => {
   const [name, setName] = useState('')
