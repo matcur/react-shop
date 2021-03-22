@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ICategory } from '../../models'
-import { BasePaginate } from '../pagination/BasePaginate'
-import { PaginateInfo } from '../pagination/BasePaginate'
-import { PaginateItem } from '../pagination/PaginateItem'
+import { BasePaginate } from '../common/pagination/BasePaginate'
+import { PaginateInfo } from '../common/pagination/BasePaginate'
+import { PaginateItem } from '../common/pagination/PaginateItem'
 
 interface IProps {
   info: PaginateInfo

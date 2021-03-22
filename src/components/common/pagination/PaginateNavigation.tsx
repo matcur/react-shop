@@ -1,5 +1,5 @@
 import React from 'react'
-import { range } from '../../utils/array'
+import { range } from '../../../utils/array'
 
 interface IProps {
   pageCount: number

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Server } from '../api/server';
-import { PaginateItem } from '../components/pagination/PaginateItem';
+import { PaginateItem } from '../components/common/pagination/PaginateItem';
 import { ICategory } from '../models';
 import { Paginate } from '../components/category/Paginate';
 import { usePageSelected } from '../hooks/usePageSelected';
