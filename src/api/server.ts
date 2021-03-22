@@ -135,4 +135,8 @@ export class Server {
   static getUserByName(name: string) {
     return users.find(u => u.name == name)
   }
+
+  static searchProducts(filter: (product: IProduct) => boolean) {
+    return products.filter(filter)
+  }
 }

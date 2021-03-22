@@ -10,6 +10,7 @@ import { LogIn } from "./pages/auth/LogIn";
 import { Registration } from "./pages/auth/Registration";
 import { Cart } from "./pages/Cart";
 import { SignOut } from "./pages/auth/SignOut";
+import { SearchResult } from "./pages/SearchResult";
 
 export const routes = [
   <Route path="/" component={Home} exact />,
@@ -22,4 +23,5 @@ export const routes = [
   <Route path="/sign-out" component={SignOut} exact/>,
   <Route path="/log-in" component={LogIn} exact/>,
   <Route path="/registration" component={Registration} exact/>,
+  <Route path="/search/result" component={SearchResult} exact/>,
 ]
