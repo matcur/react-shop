@@ -56,7 +56,7 @@ export class Server {
     await setTimeout(() => {}, 100)
 
     return new Promise<IProduct[]>(resolve => {
-      const offset = perPage * page
+      const offset = Math.max(perPage - 2, 0) * page
       
       resolve(products.slice(offset, offset + perPage))
     })
@@ -87,7 +87,7 @@ export class Server {
     await setTimeout(() => {}, 100)
 
     return new Promise<ICategory[]>(resolve => {
-      resolve(categories.slice(perPage * page, perPage))
+      resolve(categories.slice(perPage * Math.max(page - 1, 0), perPage))
     })
   }
 

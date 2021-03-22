@@ -1,6 +1,6 @@
-export function range(length: number = 0) {
+export function range(length: number = 0, start: number = 0) {
   const array = []
-  let i = 0
+  let i = start
   while (i < length) {
     array.push(i)
     i++

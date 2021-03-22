@@ -13,7 +13,7 @@ export const Categories: React.FC = () => {
   const onPageSelected = usePageSelected(setCurrentPage, setIsLoaded)
 
   if (!isLoaded)
-    Server.getProductsByPage(currentPage, 10)
+    Server.getCategoriesByPage(currentPage, 10)
           .then(res => {
             setIsLoaded(true)
             setCategories(res)

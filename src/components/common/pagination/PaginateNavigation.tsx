@@ -31,7 +31,7 @@ export const PaginateNavigation: React.FC<IProps> = ({
 
   return (
     <div className={`paginate-navigation ${paginationClassName}`}>
-      {range(pageCount).map(i => makePageItem(i))}
+      {range(pageCount, 1).map(i => makePageItem(i))}
     </div>
   )
 }
