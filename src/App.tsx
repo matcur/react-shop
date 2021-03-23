@@ -7,8 +7,6 @@ import { routes } from './main-routes'
 import { RootReducer } from './redux/store'
 
 const App: React.FC = () => {
-  const info = useSelector<RootReducer>(state => state.event)
-
   return (
     <BrowserRouter>
       <div className="app">
