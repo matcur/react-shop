@@ -34,16 +34,14 @@ const slice = createSlice({
     increaseProductCount(state, action: PayloadAction<{product: IProduct, amount: number}>) {
       const payload = action.payload
       const set = findSetByProductId(state, payload.product.id)
-      if (set != null) {
+      if (set != null)
         set.count += payload.amount
-      }
     },
     decreaseProductCount(state, action: PayloadAction<{product: IProduct, amount: number}>) {
       const payload = action.payload
       const set = findSetByProductId(state, payload.product.id)
-      if (set != null) {
+      if (set != null)
         set.count -= payload.amount
-      }
     },
   },
 })

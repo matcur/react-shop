@@ -13,6 +13,11 @@ code {
     monospace;
 }
 
+.app {
+  width: 100vw;
+  height: 100vh;
+}
+
 .px1 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -64,4 +69,16 @@ code {
 
 .counter-input {
   width: 20px;
+}
+
+.notify-list {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
+
+.notify {
+  margin: 5px 0;
+  padding: 10px;
+  background: green;
 }

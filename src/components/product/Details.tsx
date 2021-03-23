@@ -5,6 +5,7 @@ import { Server } from "../../api/server"
 import { ICartProductSet, IProduct } from "../../models"
 import { NotFound } from "../../pages/errors/NotFound"
 import { addProduct, selectSetByProductId } from "../../redux/slices/cartSlice"
+import { addEvent } from "../../redux/slices/eventSlice"
 import { RootReducer } from "../../redux/store"
 import { PositiveCounter } from "../common/counters/PositiveCounter"
 
@@ -29,6 +30,9 @@ export const Details: React.FC<IProps> = () => {
       return
 
     dispatch(addProduct({product, count}))
+    dispatch(
+      addEvent({ name: 'productAddedToCart', description: `${product.name} added in cart.` })
+    )
   }
   const loadProduct = () => {
     if (cartSet == undefined) {
