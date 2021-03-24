@@ -8,21 +8,16 @@ interface IProps {
 }
 
 export const Details: React.FC<IProps> = () => {
-  const [category, setProduct] = useState<ICategory>()
+  const [category, setCategory] = useState<ICategory>()
   const [isLoaded, setIsLoaded] = useState(false)
-  const {id} = useParams<{id?: string | undefined}>()
-
-  if (id === undefined)
-    return <NotFound/>
+  const {id} = useParams<{id: string}>()
 
   if (!isLoaded) {
     Server.getProductById(parseInt(id))
-          .then(res => setProduct(res))
+          .then(res => setCategory(res))
           .catch(rej => {})
           
     setIsLoaded(true);
-
-    return <NotFound/>
   }
 
   return (

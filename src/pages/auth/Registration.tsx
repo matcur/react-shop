@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import { Server } from '../../api/server'
 import { Field } from '../../components/common/form/Field'
+import { Validation } from '../../components/common/form/Validation'
 
 export const Registration : React.FC = () => {
   const [name, setName] = useState('')
@@ -32,20 +33,26 @@ export const Registration : React.FC = () => {
       <Field
         labelText='Name'
         value={name}
-        setValue={setName}
-        rules={[nameRule]}/>
+        setValue={setName}>
+        <Validation
+          rules={[nameRule]}/>
+      </Field>
       <Field
         labelText='Password'
         value={password}
-        setValue={setPassword}
-        prepareRules={[nameRule]}
-        rules={[passwordRule]}/>
+        setValue={setPassword}>
+        <Validation
+          prepareRules={[nameRule]}
+          rules={[passwordRule]}/>
+      </Field>
       <Field
         labelText='Repeat password'
         value={repeatedPassword}
-        setValue={setRepeatedPassword}
-        prepareRules={[nameRule, passwordRule]}
-        rules={[repeatedPasswordRule]}/>
+        setValue={setRepeatedPassword}>
+        <Validation
+          prepareRules={[nameRule, passwordRule]}
+          rules={[repeatedPasswordRule]}/>
+      </Field>
       <button onClick={register}>Register</button>
     </div>
   )

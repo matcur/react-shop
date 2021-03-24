@@ -20,7 +20,7 @@ export const ProductSet: React.FC<IProps> = ({set}) => {
     }
     dispatch(increaseProductCount(payload))
   }
-  const decreaseCount = () => {
+  const tryDecreaseCount = () => {
     if (canDecrease) {
       const payload = {
         product,
@@ -50,7 +50,7 @@ export const ProductSet: React.FC<IProps> = ({set}) => {
           >Increase count</button>
         <button 
           className="product-set__action decrease-product-count"
-          onClick={decreaseCount}
+          onClick={tryDecreaseCount}
           disabled={!canDecrease}
           >Decrease count </button>
         <button 

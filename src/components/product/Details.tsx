@@ -13,35 +13,32 @@ interface IProps {
 }
 
 export const Details: React.FC<IProps> = () => {
-  const [product, setProduct] = useState<IProduct>()
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [count, setCount] = useState(1)
-  const {id} = useParams<{id?: string | undefined}>()
-  const dispatch = useDispatch()
   const cartSet = useSelector<RootReducer, ICartProductSet | undefined>(
     state => selectSetByProductId(state, id)
   )
-
-  if (id === undefined)
-    return <NotFound/>
+  const [product, setProduct] = useState<IProduct | undefined>(cartSet?.product)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [count, setCount] = useState(1)
+  const {id} = useParams<{id: string}>()
+  const dispatch = useDispatch()
 
   const addInCart = () => {
     if (product == undefined)
       return
 
+    const event = {
+      name: 'productAddedToCart',
+      description: `${product.name} added in cart.` 
+    }
+
     dispatch(addProduct({product, count}))
-    dispatch(
-      addEvent({ name: 'productAddedToCart', description: `${product.name} added in cart.` })
-    )
+    dispatch(addEvent(event))
   }
   const loadProduct = () => {
     if (cartSet == undefined) {
       Server.getProductById(parseInt(id))
             .then(res => setProduct(res))
             .catch(rej => {})
-    } else {
-      setProduct(cartSet.product)
-      setCount(cartSet.count)
     }
     
     setIsLoaded(true)
