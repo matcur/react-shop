@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Server } from '../../api/server'
-import { ICartProductSet, IProduct } from '../../models'
+import { IProductSet, IProduct } from '../../models'
 import { RootReducer } from '../store'
 
 interface IState {
-  productSets: ICartProductSet[]
+  productSets: IProductSet[]
 }
 
 const initialState = {
@@ -23,7 +23,7 @@ const slice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addProduct(state, action: PayloadAction<ICartProductSet>) {
+    addProduct(state, action: PayloadAction<IProductSet>) {
       state.productSets.push(action.payload)
     },
     removeProduct(state, action: PayloadAction<IProduct>) {
@@ -43,10 +43,13 @@ const slice = createSlice({
       if (set != null)
         set.count -= payload.amount
     },
+    clearCart(state) {
+      state.productSets = []
+    }
   },
 })
 
-export const { addProduct, removeProduct, increaseProductCount, decreaseProductCount } = slice.actions
+export const { addProduct, removeProduct, increaseProductCount, decreaseProductCount, clearCart } = slice.actions
 
 export const selectSetByProductId = (state: RootReducer, id: number | string | undefined) => {
   if (id == undefined)

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { ICartProductSet } from '../../models'
+import { IProductSet } from '../../models'
 import { decreaseProductCount, increaseProductCount, removeProduct as removeProductFromCart } from '../../redux/slices/cartSlice'
 
 interface IProps {
-  set: ICartProductSet
+  set: IProductSet
 }
 
 export const ProductSet: React.FC<IProps> = ({set}) => {

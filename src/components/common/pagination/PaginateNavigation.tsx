@@ -15,7 +15,6 @@ export const PaginateNavigation: React.FC<IProps> = ({
     onPageSelected = () => {}
   }) => {
   const isCurrentPage = (page: number) => page === currentPage
-
   const makePageItem = (page: number) => {
     const className = `
         paginate-navigation-page-item ${pageItemClassName}

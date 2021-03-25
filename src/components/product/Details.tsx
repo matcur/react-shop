@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router"
 import { Server } from "../../api/server"
-import { ICartProductSet, IProduct } from "../../models"
+import { IProductSet, IProduct } from "../../models"
 import { NotFound } from "../../pages/errors/NotFound"
 import { addProduct, selectSetByProductId } from "../../redux/slices/cartSlice"
 import { addEvent } from "../../redux/slices/eventSlice"
@@ -13,7 +13,7 @@ interface IProps {
 }
 
 export const Details: React.FC<IProps> = () => {
-  const cartSet = useSelector<RootReducer, ICartProductSet | undefined>(
+  const cartSet = useSelector<RootReducer, IProductSet | undefined>(
     state => selectSetByProductId(state, id)
   )
   const [product, setProduct] = useState<IProduct | undefined>(cartSet?.product)
