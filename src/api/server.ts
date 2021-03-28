@@ -139,4 +139,8 @@ export class Server {
   static searchProducts(filter: (product: IProduct) => boolean) {
     return products.filter(filter)
   }
+
+  static getCategories() {
+    return categories
+  }
 }
