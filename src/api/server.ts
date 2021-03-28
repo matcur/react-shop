@@ -32,6 +32,9 @@ const categories: ICategory[] = [
   {id: 1, name: 'Cats', description: 'Cats description'},
   {id: 2, name: 'Fruits', description: 'Fruits description'},
   {id: 3, name: 'Sun', description: 'Sun description'},
+  {id: 1, name: 'Cats', description: 'Cats description'},
+  {id: 2, name: 'Fruits', description: 'Fruits description'},
+  {id: 3, name: 'Sun', description: 'Sun description'},
 ]
 
 const users: IUser[] = [
@@ -62,6 +65,20 @@ export class Server {
     })
   }
 
+  static async getProductPaginate(page: number, perPage: number) {
+    const start = perPage * Math.max(page - 1, 0)
+    const items = products.slice(start, start + perPage)
+
+    return new Promise<IPaginate>(resolve => {
+      const paginate = {
+        items,
+        lastPage: Math.round(products.length / perPage),
+      } as IPaginate
+
+      resolve(paginate)
+    })
+  }
+
   static async getProductById(id: number) {
     await setTimeout(() => {}, 100)
 
@@ -88,6 +105,20 @@ export class Server {
 
     return new Promise<ICategory[]>(resolve => {
       resolve(categories.slice(perPage * Math.max(page - 1, 0), perPage))
+    })
+  }
+
+  static getCategoryPaginate(page: number, perPage: number) {
+    const start = perPage * Math.max(page - 1, 0)
+    const items = categories.slice(start, start + perPage)
+
+    return new Promise<IPaginate>(resolve => {
+      const paginate = {
+        items,
+        lastPage: Math.round(categories.length / perPage),
+      } as IPaginate
+
+      resolve(paginate)
     })
   }
 
@@ -143,4 +174,10 @@ export class Server {
   static getCategories() {
     return categories
   }
+}
+
+export interface IPaginate {
+  items: any[],
+  lastPage: number,
+  currentPage: number,
 }

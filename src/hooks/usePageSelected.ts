@@ -3,7 +3,6 @@ export const usePageSelected = (
   setIsLoaded: (value: boolean) => void
 ) => {
   return (page: number) => {
-    setCurrentPage(page)
     setIsLoaded(false)
   }
 }

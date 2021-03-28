@@ -1,7 +1,10 @@
-export function range(length: number = 0, start: number = 0) {
+export function range(start: number, last: number) {
+  if (start > last)
+    return []
+
   const array = []
   let i = start
-  while (i < length) {
+  while (i < last) {
     array.push(i)
     i++
   }

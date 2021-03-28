@@ -7,8 +7,6 @@ interface IProps {
 }
 
 export const CategoryMenu: React.FC<IProps> = ({}) => {
-  const [needShow, setNeedShow] = useState(true)
-
   const categories = Server.getCategories()
   const makeItem = (category: ICategory) => {
     return (
@@ -29,14 +27,10 @@ export const CategoryMenu: React.FC<IProps> = ({}) => {
           <div className="burger-line"></div>
         </div>
       </div>
-      {
-        needShow? 
-        <div className="category-items">
-          <div className="category-title category-item">Categories</div>
-          {categories.map(makeItem)}
-        </div>:
-        null
-      }
+      <div className="category-items">
+        <div className="category-title category-item">Categories</div>
+        {categories.map(makeItem)}
+      </div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { Server } from "../../api/server"
 import { ICategory } from "../../models"
@@ -9,16 +9,13 @@ interface IProps {
 
 export const Details: React.FC<IProps> = () => {
   const [category, setCategory] = useState<ICategory>()
-  const [isLoaded, setIsLoaded] = useState(false)
   const {id} = useParams<{id: string}>()
 
-  if (!isLoaded) {
+  useEffect(() => {
     Server.getProductById(parseInt(id))
           .then(res => setCategory(res))
           .catch(rej => {})
-          
-    setIsLoaded(true);
-  }
+  })
 
   return (
     <div className="product-details">

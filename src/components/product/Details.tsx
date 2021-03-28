@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router"
 import { Server } from "../../api/server"
@@ -13,13 +13,12 @@ interface IProps {
 }
 
 export const Details: React.FC<IProps> = () => {
+  const [count, setCount] = useState(1)
+  const {id} = useParams<{id: string}>()
   const cartSet = useSelector<RootReducer, IProductSet | undefined>(
     state => selectSetByProductId(state, id)
   )
   const [product, setProduct] = useState<IProduct | undefined>(cartSet?.product)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [count, setCount] = useState(1)
-  const {id} = useParams<{id: string}>()
   const dispatch = useDispatch()
 
   const addInCart = () => {
@@ -34,21 +33,14 @@ export const Details: React.FC<IProps> = () => {
     dispatch(addProduct({product, count}))
     dispatch(addEvent(event))
   }
-  const loadProduct = () => {
+
+  useEffect(() => {
     if (cartSet == undefined) {
       Server.getProductById(parseInt(id))
             .then(res => setProduct(res))
             .catch(rej => {})
     }
-    
-    setIsLoaded(true)
-  }
-
-  if (!isLoaded) {
-    loadProduct()
-
-    return <NotFound/>
-  }
+  })
 
   return (
     <div className="products">

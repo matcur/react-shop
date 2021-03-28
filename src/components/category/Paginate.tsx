@@ -1,17 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Server } from '../../api/server'
 import { ICategory } from '../../models'
 import { BasePaginate } from '../common/pagination/BasePaginate'
 import { PaginateInfo } from '../common/pagination/BasePaginate'
 import { PaginateItem } from '../common/pagination/PaginateItem'
 
 interface IProps {
-  info: PaginateInfo
-  categories: ICategory[]
-  onPageSelected?: (page: number) => void
 }
 
-export const Paginate: React.FC<IProps> = ({info, categories, onPageSelected = () => {}}) => {
+export const Paginate: React.FC<IProps> = () => {
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [lastPage, setLastPage] = useState(0);
+
+  const onPageSelected = (page: number) => setCurrentPage(page)
+
+  useEffect(() => {
+    Server.getCategoryPaginate(currentPage, 3)
+          .then(res => {
+            setCategories(res.items)
+            setLastPage(res.lastPage)
+          })
+  }, [currentPage])
+
   const makePaginateItem = (category: ICategory) => {
     return (
       <PaginateItem>
@@ -24,7 +36,7 @@ export const Paginate: React.FC<IProps> = ({info, categories, onPageSelected = (
   return (
     <div className="body category-page">
       <BasePaginate
-        info={info}
+        info={{currentPage, lastPage}}
         onPageSelected={onPageSelected}>
         {
           categories.map(c => makePaginateItem(c))

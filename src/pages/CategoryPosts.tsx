@@ -14,7 +14,6 @@ export const CategoryPosts: React.FC<IProps> = () => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [lastPage, setLastPage] = useState(1)
-  const onPageSelected = usePageSelected(setCurrentPage, setIsLoaded)
 
   if (!isLoaded)
     Server.getPostsByCategoryId(parseInt(id))
@@ -25,6 +24,5 @@ export const CategoryPosts: React.FC<IProps> = () => {
   
   return <Paginate 
             info={{currentPage, lastPage}}
-            products={products}
-            onPageSelected={onPageSelected}/>
+            products={products}/>
 }
